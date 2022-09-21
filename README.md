@@ -18,4 +18,8 @@ MyCommand = new DelegateCommand((() =>
 
 ### Observed Behavior
 
-Nothign happens. there are on binding errors in the build or runtime output either.
+Nothign happens. There are no binding errors in the build or runtime output, ultimately the ElementName binding extension doesn't appear to be working.
+
+### Further Investigation
+
+Review the first DataGridTemplateColumn. The Button's Command binding is using ElementName to change the Source of the DataContext to the view model instead of the row's 'Product' DataContent.
