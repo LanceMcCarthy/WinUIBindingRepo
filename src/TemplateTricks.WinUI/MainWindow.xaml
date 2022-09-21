@@ -1,0 +1,38 @@
+﻿<Window x:Class="TemplateTricks.WinUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="using:TemplateTricks.WinUI"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+        mc:Ignorable="d">
+
+    <Grid>
+        <!-- This only to simulate dependency injection (i.e. don't provide an x:Name as a workaround 🤓) -->
+        <Grid.DataContext>
+            <local:MainViewModel />
+        </Grid.DataContext>
+
+        <controls:DataGrid x:Name="MyDataGrid"
+                           Height="600"
+                           Margin="12"
+                           AutoGenerateColumns="False"
+                           ItemsSource="{Binding ProductsList, Mode=OneTime}">
+            <controls:DataGrid.Columns>
+                <controls:DataGridTemplateColumn Header="Button">
+                    <controls:DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Command="{Binding DataContext.MyCommand, ElementName=MyDataGrid, Mode=OneTime}">
+                                <SymbolIcon Symbol="Edit" />
+                            </Button>
+                        </DataTemplate>
+                    </controls:DataGridTemplateColumn.CellTemplate>
+                </controls:DataGridTemplateColumn>
+                <controls:DataGridTextColumn Header="Name"
+                                             Binding="{Binding Name}" />
+                <controls:DataGridCheckBoxColumn Header="Discontinued?"
+                                                 Binding="{Binding Discontinued}" />
+            </controls:DataGrid.Columns>
+        </controls:DataGrid>
+    </Grid>
+</Window>

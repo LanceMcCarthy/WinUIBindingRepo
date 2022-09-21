@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TemplateTricks.WinUI (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "TemplateTricks.WinUI (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
